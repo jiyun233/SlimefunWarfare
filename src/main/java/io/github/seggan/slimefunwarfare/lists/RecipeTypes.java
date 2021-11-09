@@ -11,8 +11,8 @@ public final class RecipeTypes {
     public static final RecipeType ELEMENT_FORGE = new RecipeType(
         AbstractAddon.createKey("element_forge"),
         Items.ELEMENT_FORGE,
-        "&cElement Forge",
-        "&7Used to create new elements"
+        "&c元素锻造台",
+        "&7用来创建新的元素"
     );
 
     public static final RecipeType AIR_LIQUEFIER = new RecipeType(

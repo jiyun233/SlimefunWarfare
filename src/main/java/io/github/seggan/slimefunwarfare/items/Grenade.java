@@ -23,9 +23,9 @@ public class Grenade extends SlimefunItem {
         super(Categories.EXPLOSIVES, new SlimefunItemStack(
             chemical.getItemId() + "_GRENADE",
             Material.SNOWBALL,
-            "&fChemical Grenade",
+            "&f化学手榴弹",
             "",
-            "&7Contents: " + ChatUtils.removeColorCodes(chemical.getDisplayName())
+            "&7包含: " + ChatUtils.removeColorCodes(chemical.getDisplayName())
         ), RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
             Items.EMPTY_GRENADE, chemical, null,
             null, null, null,

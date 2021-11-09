@@ -39,9 +39,9 @@ public class ElementForge extends MultiBlockMachine {
 
     public ElementForge(ItemGroup category, SlimefunItemStack item) {
         super(category, item, new ItemStack[]{
-            getCorner(), new CustomItemStack(Material.PISTON, "&fPiston &7(Facing Down)"), getCorner(),
+            getCorner(), new CustomItemStack(Material.PISTON, "&f活塞 &7(朝下)"), getCorner(),
             new ItemStack(Material.NETHER_BRICK_WALL), null, new ItemStack(Material.NETHER_BRICK_WALL),
-            new CustomItemStack(Material.HOPPER, "&fHopper &7(Facing Inwards)"), new ItemStack(Material.SMITHING_TABLE),
+            new CustomItemStack(Material.HOPPER, "&f漏斗 &7(朝下)"), new ItemStack(Material.SMITHING_TABLE),
             new ItemStack(Material.DISPENSER)
         }, BlockFace.UP);
     }
@@ -61,7 +61,7 @@ public class ElementForge extends MultiBlockMachine {
         Block piston = b.getRelative(0, 2, 0);
 
         if (dispenser == null) {
-            p.sendMessage(ChatColor.RED + "Could not locate dispenser!");
+            p.sendMessage(ChatColor.RED + "无法找到发射器的位置!");
             return;
         }
 

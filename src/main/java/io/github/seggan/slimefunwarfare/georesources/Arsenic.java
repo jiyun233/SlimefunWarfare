@@ -35,7 +35,7 @@ public class Arsenic implements GEOResource {
     @Nonnull
     @Override
     public String getName() {
-        return "Arsenic";
+        return "砷";
     }
 
     @Nonnull

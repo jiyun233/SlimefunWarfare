@@ -49,7 +49,7 @@ public class HitListener implements Listener {
             e.setCancelled(true);
             Player p = (Player) e.getDamager();
             p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColors.color(
-                String.format("&cYou have dealt %d half-hearts of damage", Math.round(e.getFinalDamage()))
+                String.format("&c你对假人造成了 %d 点伤害", Math.round(e.getFinalDamage()))
             )));
         }
     }
