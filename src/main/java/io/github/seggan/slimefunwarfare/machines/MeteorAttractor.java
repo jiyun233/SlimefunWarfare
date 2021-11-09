@@ -79,12 +79,12 @@ public class MeteorAttractor extends SimpleSlimefunItem<BlockUseHandler> {
                 );
 
                 Location l = b.getClickedBlock().get().getLocation();
-                b.getPlayer().sendMessage("Sending meteor in " + mins + " minutes");
+                b.getPlayer().sendMessage("流星将在" + mins + "分钟内坠落");
                 Scheduler.run(mins * 60 * 20, () -> drop(l, b.getPlayer()));
             } else {
-                b.getPlayer().sendMessage(ChatColor.RED + "The Meteor Attractor has a "
+                b.getPlayer().sendMessage(ChatColor.RED + "流星吸引器有"
                     + config.getInt("space.space.attractor-cooldown", 1) +
-                    " minute cooldown"
+                    "分钟的冷却时间"
                 );
             }
         };

@@ -46,7 +46,7 @@ public class SlimefunWarfare extends AbstractAddon implements Listener {
     private static final Set<UUID> flying = new HashSet<>();
 
     public SlimefunWarfare() {
-        super("Seggan", "SlimefunWarfare", "master", "auto-update");
+        super("ybw0014", "SlimefunWarfare-CN", "master", "auto-update");
     }
 
     @Override
@@ -79,7 +79,7 @@ public class SlimefunWarfare extends AbstractAddon implements Listener {
         Module.setup(this);
 
         if (getJavaVersion() < 16) {
-            log(Level.WARNING, "You are using a Java version that is less that 16! Please use Java 16 or above");
+            log(Level.WARNING, "你正在使用Java16以下的版本,请尽快使用Java16");
         }
 
         if (getConfig().getBoolean("guns.autoshoot", true)) {
