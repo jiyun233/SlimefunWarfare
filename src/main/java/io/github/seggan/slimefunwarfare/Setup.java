@@ -136,8 +136,8 @@ public final class Setup {
 
         // Energy
         new SlimefunItem(Categories.GENERAL, Items.OSMIUM_SUPERALLOY, RecipeType.SMELTERY, new ItemStack[]{
-            Items.OSMIUM_INGOT, Items.SEGGANESSON, Items.REINFORCED_SLIMESTEEL, SlimefunItems.REINFORCED_ALLOY_INGOT,
-            Items.OSMIUM_DUST, Items.GADOLINIUM_INGOT, null,
+            Items.OSMIUM_INGOT, Items.REINFORCED_SLIMESTEEL, SlimefunItems.REINFORCED_ALLOY_INGOT,
+            Items.OSMIUM_DUST, Items.GADOLINIUM_INGOT, Items.TERBIUM_INGOT,
             null, null, null
         }).register(addon);
 
@@ -379,7 +379,7 @@ public final class Setup {
 
         new SlimefunItem(Categories.POWER_SUITS, Items.POWER_SUIT_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
             Items.UNPATENTABLIUM, Items.UNPATENTABLIUM, Items.UNPATENTABLIUM,
-            Items.UNPATENTABLIUM, SlimefunItems.NETHER_STAR_REACTOR, Items.UNPATENTABLIUM,
+            Items.SEGGANESSON, SlimefunItems.NETHER_STAR_REACTOR, Items.SEGGANESSON,
             Items.UNPATENTABLIUM, Items.LASER_DIODE, Items.UNPATENTABLIUM
         }).register(addon);
 
