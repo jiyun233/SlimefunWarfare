@@ -25,6 +25,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import net.guizhanss.guizhanlib.updater.GuizhanBuildsUpdater;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -62,6 +63,11 @@ public class SlimefunWarfare extends AbstractAddon implements Listener {
         instance = this;
 
         new Metrics(this, 9227);
+
+        if (getConfig().getBoolean("auto-update") &&
+            getDescription().getVersion().startsWith("Build")) {
+            new GuizhanBuildsUpdater(this, getFile(), "ybw0014", "SlimefunWarfare-CN", "master", false).start();
+        }
 
         Events.registerListener(new BulletListener());
         Events.registerListener(new PyroListener());

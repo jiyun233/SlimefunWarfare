@@ -4,6 +4,8 @@
 
 ## 下载
 
+**自动更新**: 汉化版构建#2及以上版本包含自动更新功能，默认开启。
+
 点击这里下载 SlimefunWarfare: [下载 SlimefunWarfare](https://builds.guizhanss.net/ybw0014/SlimefunWarfare-CN/master)
 
 <p align="center">
