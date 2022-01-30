@@ -1,40 +1,54 @@
 # 自动更新
 auto-update: true
 
+# 爆炸设置
 explosions:
+  # 钢筋混凝土 爆炸几率
   concrete-explode-chance: 10
 
+# 枪械设置
 guns:
+  # 自动射击 (蹲下)
   autoshoot: true
-  # This will allow bullets to be used from the inventory; if off, bullets are only used from the offhand. Turn off
-  # if this gets really laggy when shooting
+  # 开启该选项时，子弹将从物品栏中消耗
+  # 关闭该选项时，子弹将仅从副手消耗
+  # 如果射击导致服务器严重卡顿，关闭该选项
   use-bullets-from-inv: true
-  # Min range is intended to balance things a little more; this removes it and allows you to shoot at any distance
-  # within max range
+  # 开启最小射击范围可以增加平衡性
+  # 关闭后不再有最小射击范围的限制
   min-range-on: true
+  # 是否开启能量武器的爆炸
   energy-rifle-explosions: false
-  # The % chance that borax will drop from a stone block. can be a decimal
+  # 破坏石头时硼砂的掉落几率
+  # 百分比（0-100），可以是小数
   borax-drop-chance: 2.0
 
+# 太空设置
 space:
-  # The percent chance that a Segganesson meteor will be dropped instead of an Osmium meteor
+  # 流星吸引器吸引流星时
+  # 吸引赛格尼森流星的几率（取代锇流星）
+  # 百分比（0-100）
   segganesson-chance: 15
-  # The minimum delay between a meteor attractor activation and the drop (in minutes)
+  # 流星吸引器激活和流星坠落之间的最小间隔时间（单位：分钟）
   meteor-min-time: 10
-  # The maximum delay between a meteor attractor activation and the drop (in minutes)
+  # 流星吸引器激活和流星坠落之间的最大间隔时间（单位：分钟）
   meteor-max-time: 30
-  # The cooldown that a player can't use a meteor attractor (in minutes)
+  # 流星吸引器激活的冷却时间（单位：分钟）
   attractor-cooldown: 1
-  # The radius that a meteor will be dropped in. Since it's a radius, the meteor will drop
-  # in a value x 2 by value x 2 box (i.e. for the default 100, it's gonna drop in a 200x200 box)
+  # 流星坠落距离吸引器的半径
+  # 流星坠落范围为正方形
+  # 该范围为正方形边长的一半
+  # 例如，默认为100时，坠落区域为周围200x200的区域
   meteor-drop-radius: 100
 
+# 动力装甲设置
 suits:
-  # This will spawn blue particles underneath you when flying with a power suit
+  # 装备动力装甲时飞行是否在脚下显示蓝色粒子效果
   flight-particles: true
-  # If this is true, the Element Forge will use iron blocks instead of netherite blocks for the corners
+  # 启用该选项时，元素锻造台将使用铁块而不是下界合金块作为边角方块
   legacy-element-forge: false
 
+# 雷达设置(该部分已删除)
 radar:
   show-players: true
   show-mobs: true
