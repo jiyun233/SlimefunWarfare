@@ -330,7 +330,7 @@ public final class Items {
     public static final SlimefunItemStack FIBER_OPTIC_GLASS = new SlimefunItemStack(
         "FIBER_OPTIC_GLASS",
         Material.BLUE_STAINED_GLASS,
-        "&f光线玻璃"
+        "&f光纤玻璃"
     );
 
     public static final SlimefunItemStack FIBER_OPTIC_CABLE = new SlimefunItemStack(
