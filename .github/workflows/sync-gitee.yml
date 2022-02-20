@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: wearerequired/git-mirror-action@master
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.GUIZHAN_GITEE_PRIVATE_KEY }}
         with:
-          source-repo: "git@github.com:GuizhanCraft/SlimefunWarfare-CN.git"
+          source-repo: "git@github.com:SlimefunGuguProject/SlimefunWarfare.git"
           destination-repo: "git@gitee.com:ybw0014/SlimefunWarfare-CN.git"
