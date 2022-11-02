@@ -391,7 +391,8 @@ public final class Items {
         Material.IRON_INGOT,
         "&e镧锭",
         "",
-        "&7可作为无限打火石使用"
+        "&7可作为无限打火石使用",
+        "&8然而并不能放在自动点火机里"
     );
 
     public static final SlimefunItemStack NEODYMIUM_INGOT = new SlimefunItemStack(
