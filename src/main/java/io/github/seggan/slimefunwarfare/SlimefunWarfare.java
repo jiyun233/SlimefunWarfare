@@ -100,6 +100,18 @@ public class SlimefunWarfare extends AbstractAddon implements Listener {
             log(Level.WARNING, "你正在使用Java16以下的版本,请尽快使用Java16");
         }
 
+        try {
+            Class<?> clazz = Class.forName("com.gmail.llmdlio.townyflight.TownyFlightAPI");
+            Method getInstance = clazz.getDeclaredMethod("getInstance");
+            getInstance.setAccessible(true);
+            townyFlightApi = getInstance.invoke(null);
+
+            MethodHandles.Lookup lookup = MethodHandles.publicLookup();
+            MethodType type = MethodType.methodType(void.class, Player.class, boolean.class);
+            forceFlightMethod = lookup.findVirtual(clazz, "setForceAllowFlight", type);
+        } catch (ReflectiveOperationException ignored) {
+        }
+
         if (getConfig().getBoolean("guns.autoshoot", true)) {
             // Gun autoshoot task
             Scheduler.repeat(1, () -> {
@@ -143,7 +155,7 @@ public class SlimefunWarfare extends AbstractAddon implements Listener {
                 Util.ifPowerSuit(boots, suit -> process(boots, PowerSuit.getModules(boots), suit, p), () -> {
                     UUID uuid = p.getUniqueId();
                     if (flying.contains(uuid)) {
-                        flying.remove(uuid);
+                        Scheduler.run(() -> flying.remove(uuid));
                         p.setAllowFlight(false);
                         setForceAllowFlight(p, false);
                     }
@@ -156,7 +168,7 @@ public class SlimefunWarfare extends AbstractAddon implements Listener {
                 for (UUID uuid : flying) {
                     Player p = getServer().getPlayer(uuid);
                     if (p == null) {
-                        flying.remove(uuid);
+                        Scheduler.run(() -> flying.remove(uuid));
                         continue;
                     }
                     if (p.isFlying()) {
@@ -171,22 +183,11 @@ public class SlimefunWarfare extends AbstractAddon implements Listener {
                 Class<?> orechid = Class.forName("me.profelements.dynatech.items.tools.Orechid");
                 Method method = orechid.getDeclaredMethod("registerOre", Material.class, SlimefunItemStack.class, float.class);
                 method.setAccessible(true);
-                method.invoke(null, Material.WAXED_WEATHERED_CUT_COPPER_STAIRS, Items.OSMIUM_METEOR, 100 - getConfig().getInt("space.segganesson-chance", 0, 100));
-                method.invoke(null, Material.WAXED_WEATHERED_CUT_COPPER_STAIRS, Items.SEGGANESSON_METEOR, getConfig().getInt("space.segganesson-chance", 0, 100));
+                int segganessonChance = getConfig().getInt("space.segganesson-chance", 0, 100);
+                method.invoke(null, Material.WAXED_WEATHERED_CUT_COPPER_STAIRS, Items.OSMIUM_METEOR, 100 - segganessonChance);
+                method.invoke(null, Material.WAXED_WEATHERED_CUT_COPPER_STAIRS, Items.SEGGANESSON_METEOR, segganessonChance);
             } catch (ReflectiveOperationException ignored) {
             }
-        }
-
-        try {
-            Class<?> clazz = Class.forName("com.gmail.llmdlio.townyflight.TownyFlightAPI");
-            Method getInstance = clazz.getDeclaredMethod("getInstance");
-            getInstance.setAccessible(true);
-            townyFlightApi = getInstance.invoke(null);
-
-            MethodHandles.Lookup lookup = MethodHandles.publicLookup();
-            MethodType type = MethodType.methodType(void.class, Player.class, boolean.class);
-            forceFlightMethod = lookup.findVirtual(clazz, "setForceAllowFlight", type);
-        } catch (ReflectiveOperationException ignored) {
         }
     }
 
