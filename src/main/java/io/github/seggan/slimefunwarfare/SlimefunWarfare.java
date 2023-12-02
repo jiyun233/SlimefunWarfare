@@ -24,7 +24,7 @@ import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import net.guizhanss.guizhanlib.updater.GuizhanBuildsUpdater;
+import net.guizhanss.guizhanlibplugin.updater.GuizhanUpdater;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -59,18 +59,24 @@ public class SlimefunWarfare extends AbstractAddon implements Listener {
     private static Object townyFlightApi = null;
 
     public SlimefunWarfare() {
-        super("ybw0014", "SlimefunWarfare-CN", "master", "auto-update");
+        super("SlimefunGuguProject", "SlimefunWarfare", "master", "auto-update");
     }
 
     @Override
     public void enable() {
         instance = this;
 
+        if (!getServer().getPluginManager().isPluginEnabled("GuizhanLibPlugin")) {
+            getLogger().log(Level.SEVERE, "本插件需要 鬼斩前置库插件(GuizhanLibPlugin) 才能运行!");
+            getLogger().log(Level.SEVERE, "从此处下载: https://50l.cc/gzlib");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         new Metrics(this, 9227);
 
-        if (getConfig().getBoolean("auto-update") &&
-            getDescription().getVersion().startsWith("Build")) {
-            new GuizhanBuildsUpdater(this, getFile(), "ybw0014", "SlimefunWarfare-CN", "master", false).start();
+        if (getConfig().getBoolean("auto-update") && getDescription().getVersion().startsWith("Build")) {
+            GuizhanUpdater.start(this, getFile(), "SlimefunGuguProject", "SlimefunWarfare", "master");
         }
 
         Events.registerListener(new BulletListener());

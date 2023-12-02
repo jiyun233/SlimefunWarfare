@@ -5,6 +5,7 @@ author: Seggan
 depend:
   - Slimefun
 softdepend:
+  - GuizhanLibPlugin
   - SimpleStorage
   - InfinityExpansion
   - DynaTech
