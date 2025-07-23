@@ -93,8 +93,7 @@ public class BulletListener implements Listener {
                             armor.setItemMeta(damageable);
                         }
                     });
-            e.setDamage(0.1);
-            player.setHealth(Math.max(player.getHealth() - newDamage, 0));
+            e.setDamage(newDamage * 1.5);
         }
 
         if (bullet.hasMetadata("isGunBullet")) {
