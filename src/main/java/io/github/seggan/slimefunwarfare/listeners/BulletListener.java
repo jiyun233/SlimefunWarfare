@@ -28,11 +28,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class BulletListener implements Listener {
 
-    // 定义不同护甲类型的伤害减免比例
     private final Map<Material, Double> armorDamageReduction = new HashMap<>();
 
     public BulletListener() {
-        // 初始化护甲伤害减免比例
         armorDamageReduction.put(Material.LEATHER_HELMET, 0.05);
         armorDamageReduction.put(Material.LEATHER_CHESTPLATE, 0.10);
         armorDamageReduction.put(Material.LEATHER_LEGGINGS, 0.05);
