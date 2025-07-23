@@ -19,11 +19,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class BulletListener implements Listener {
@@ -69,18 +72,30 @@ public class BulletListener implements Listener {
 
         Entity shot = e.getEntity();
         if (shot instanceof Player player) {
-            AtomicReference<Double> totalDamageReduction = new AtomicReference<>((double) 0);
-            Arrays.stream(player.getInventory().getArmorContents()).forEach(armor -> {
-                val meta = armor.getItemMeta();
-                if (meta != null) {
+            Arrays.stream(player.getInventory().getArmorContents())
+                    .filter(Objects::nonNull)
+                    .forEach(armor -> {
+                        val meta = armor.getItemMeta();
+                        if (meta instanceof Damageable damageable) {
+                            int currentDamage = damageable.getDamage();
+                            int newDamage = Math.min(currentDamage + 100, armor.getType().getMaxDurability());
+                            damageable.setDamage(newDamage);
+                            armor.setItemMeta(damageable);
+                        }
+                    });
+
+            double totalDamageReduction = 0;
+            for (ItemStack armor : player.getInventory().getArmorContents()) {
+                if (armor != null) {
                     Material armorMaterial = armor.getType();
                     if (armorDamageReduction.containsKey(armorMaterial)) {
-                        totalDamageReduction.updateAndGet(v -> v + armorDamageReduction.get(armorMaterial));
+                        totalDamageReduction += armorDamageReduction.get(armorMaterial);
                     }
                 }
-            });
+            }
 
-            double newDamage = e.getDamage() * (1 - totalDamageReduction.get());
+            // 根据护甲提供的总伤害减免，调整实际对玩家造成的伤害
+            double newDamage = e.getDamage() * (1 - totalDamageReduction);
             e.setDamage(newDamage);
         }
 
