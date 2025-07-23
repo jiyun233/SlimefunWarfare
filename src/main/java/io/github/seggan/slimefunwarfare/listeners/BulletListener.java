@@ -72,18 +72,6 @@ public class BulletListener implements Listener {
 
         Entity shot = e.getEntity();
         if (shot instanceof Player player) {
-            Arrays.stream(player.getInventory().getArmorContents())
-                    .filter(Objects::nonNull)
-                    .forEach(armor -> {
-                        val meta = armor.getItemMeta();
-                        if (meta instanceof Damageable damageable) {
-                            int currentDamage = damageable.getDamage();
-                            int newDamage = Math.min(currentDamage + 100, armor.getType().getMaxDurability());
-                            damageable.setDamage(newDamage);
-                            armor.setItemMeta(damageable);
-                        }
-                    });
-
             double totalDamageReduction = 0;
             for (ItemStack armor : player.getInventory().getArmorContents()) {
                 if (armor != null) {
@@ -94,9 +82,20 @@ public class BulletListener implements Listener {
                 }
             }
 
-            // 根据护甲提供的总伤害减免，调整实际对玩家造成的伤害
             double newDamage = e.getDamage() * (1 - totalDamageReduction);
-            e.setDamage(newDamage);
+            Arrays.stream(player.getInventory().getArmorContents())
+                    .filter(Objects::nonNull)
+                    .forEach(armor -> {
+                        val meta = armor.getItemMeta();
+                        if (meta instanceof Damageable damageable) {
+                            int currentDamage = damageable.getDamage();
+                            int armorDamage = Math.min(currentDamage + (int) newDamage, armor.getType().getMaxDurability());
+                            damageable.setDamage(armorDamage);
+                            armor.setItemMeta(damageable);
+                        }
+                    });
+            e.setDamage(0.1);
+            player.setHealth(Math.max(player.getHealth() - newDamage, 0));
         }
 
         if (bullet.hasMetadata("isGunBullet")) {
