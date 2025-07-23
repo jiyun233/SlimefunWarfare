@@ -232,6 +232,14 @@ public final class Items {
         "&72 倍伤害"
     );
 
+    public static final SlimefunItemStack MACHINE_BULLET = new SlimefunItemStack(
+            "MACHINE_BULLET",
+            Material.CARROT,
+            "&612.7mm机枪弹",
+            "",
+            "&72 倍伤害"
+    );
+
     public static final SlimefunItemStack TRINITROBULLETENE = new SlimefunItemStack(
         "TRINITROBULLETENE_BULLET",
         Material.GOLD_NUGGET,
@@ -621,7 +629,7 @@ public final class Items {
     public static final SlimefunItemStack ASSAULT_RIFLE = new SlimefunItemStack(
         "GUN_ASSAULT_RIFLE",
         Material.CROSSBOW,
-        "&7重机枪",
+        "&7突击步枪",
         "",
         "&7步枪的衍生物",
         "&7突击步枪是标配",
@@ -629,6 +637,17 @@ public final class Items {
         "&c最小射程: 0",
         "&c伤害: 13 (6.5 ♥)",
         "&c冷却时间: 0.3 秒"
+    );
+    public static final SlimefunItemStack HEAVY_MACHINE = new SlimefunItemStack(
+            "GUN_HEAVY_MACHINE",
+            Material.CROSSBOW,
+            "&c重机枪",
+            "",
+            "&c只能使用 「&612.7mm机枪弹&c」",
+            "&c射程: 50",
+            "&c最小射程: 0",
+            "&c伤害: 20 (10 ♥)",
+            "&c冷却时间: 0.05 秒"
     );
     public static final SlimefunItemStack SNIPER = new SlimefunItemStack(
         "GUN_SNIPER",

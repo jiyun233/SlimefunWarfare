@@ -127,7 +127,7 @@ public class Gun extends SlimefunItem implements DamageableItem {
     }
 
     @Nullable
-    protected static Bullet checkAndConsumeInv(@Nonnull Inventory inv) {
+    protected Bullet checkAndConsumeInv(@Nonnull Inventory inv) {
         Bullet bullet = null;
 
         for (ItemStack itemStack : inv) {
@@ -141,8 +141,19 @@ public class Gun extends SlimefunItem implements DamageableItem {
     }
 
     @Nullable
-    protected static Bullet checkAndConsume(@Nonnull ItemStack stack) {
+    protected Bullet checkAndConsume(@Nonnull ItemStack stack) {
         AtomicReference<Bullet> bullet = new AtomicReference<>(null);
+
+        if (this.getId().equals("GUN_HEAVY_MACHINE")) {
+            SlimefunItem item = SlimefunItem.getByItem(stack);
+            if (item instanceof Bullet result) {
+                if (result.getId().equals("MACHINE_BULLET")) {
+                    bullet.set(result);
+                }
+            } else if (item instanceof SlimefunBackpack) {
+                PlayerProfile.getBackpack(stack, backpack -> bullet.set(checkAndConsumeInv(backpack.getInventory())));
+            }
+        }
 
         SlimefunItem item = SlimefunItem.getByItem(stack);
         if (item instanceof Bullet) {
