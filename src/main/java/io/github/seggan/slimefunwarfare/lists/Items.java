@@ -646,7 +646,7 @@ public final class Items {
             "&c只能使用 「&612.7mm机枪弹&c」",
             "&c射程: 50",
             "&c最小射程: 0",
-            "&c伤害: 20 (10 ♥)",
+            "&c伤害: 100 (50 ♥)",
             "&c冷却时间: 0.05 秒"
     );
     public static final SlimefunItemStack SNIPER = new SlimefunItemStack(

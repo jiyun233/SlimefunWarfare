@@ -215,7 +215,7 @@ public final class Setup {
                 Items.OSMIUM_SUPERALLOY, Items.ADVANCED_BARREL, Items.OSMIUM_SUPERALLOY,
                 Items.ADVANCED_BARREL, Items.MACHINE_GUN, Items.OSMIUM_SUPERALLOY,
                 Items.OSMIUM_SUPERALLOY, Items.OSMIUM_SUPERALLOY, Items.NDFEB_ALLOY_BLOCK
-        }, 50, 0, 20, 0.05).register(addon);
+        }, 50, 0, 100, 0.05).register(addon);
 
         new Gun(Items.SNIPER, new ItemStack[]{
                 null, Items.REINFORCED_SLIMESTEEL, Items.REINFORCED_SLIMESTEEL,
