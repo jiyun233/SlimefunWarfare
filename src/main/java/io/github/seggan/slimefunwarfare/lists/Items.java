@@ -580,18 +580,18 @@ public final class Items {
         "",
         "&7哒哒哒~",
         "&c射程: 30",
-        "&c最小射程: 5",
+        "&c最小射程: 0",
         "&c伤害: 6 (3 ♥)",
         "&c冷却时间: 0.15 秒"
     );
     public static final SlimefunItemStack MINIGUN = new SlimefunItemStack(
         "GUN_MINIGUN",
         Material.CROSSBOW,
-        "&7重机枪",
+        "&7冲锋枪",
         "",
         "&7为你的朋友增加点乐趣的终极装备.",
         "&c射程: 40",
-        "&c最小射程: 5",
+        "&c最小射程: 0",
         "&c伤害: 8 (4 ♥)",
         "&c冷却时间: 无"
     );
@@ -602,7 +602,7 @@ public final class Items {
         "",
         "&7一把标准步枪.",
         "&c射程: 40",
-        "&c最小射程: 5",
+        "&c最小射程: 0",
         "&c伤害: 8 (4 ♥)",
         "&c冷却时间: 0.75 秒"
     );
@@ -614,19 +614,19 @@ public final class Items {
         "&7拥有比步枪更近的射程",
         "&7但能造成更多伤害.",
         "&c射程: 25",
-        "&c最小射程: 5",
+        "&c最小射程: 0",
         "&c伤害: 13 (6.5 ♥)",
         "&c冷却时间: 1.25 秒"
     );
     public static final SlimefunItemStack ASSAULT_RIFLE = new SlimefunItemStack(
         "GUN_ASSAULT_RIFLE",
         Material.CROSSBOW,
-        "&7突击步枪",
+        "&7重机枪",
         "",
         "&7步枪的衍生物",
         "&7突击步枪是标配",
         "&c射程: 50",
-        "&c最小射程: 3",
+        "&c最小射程: 0",
         "&c伤害: 13 (6.5 ♥)",
         "&c冷却时间: 0.3 秒"
     );
@@ -638,7 +638,7 @@ public final class Items {
         "&7这把枪拥有超远的射程",
         "&7狙击手的标配.",
         "&c射程: 130",
-        "&c最小射程: 50",
+        "&c最小射程: 0",
         "&c伤害: 22 (11 ♥)",
         "&c冷却时间: 8 秒"
     );

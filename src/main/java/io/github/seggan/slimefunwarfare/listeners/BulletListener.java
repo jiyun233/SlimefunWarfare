@@ -5,8 +5,10 @@ import io.github.seggan.slimefunwarfare.Util;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.common.CommonPatterns;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import lombok.val;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -19,17 +21,73 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
+
 public class BulletListener implements Listener {
+
+    // 定义不同护甲类型的伤害减免比例
+    private final Map<Material, Double> armorDamageReduction = new HashMap<>();
+
+    public BulletListener() {
+        // 初始化护甲伤害减免比例
+        armorDamageReduction.put(Material.LEATHER_HELMET, 0.05);
+        armorDamageReduction.put(Material.LEATHER_CHESTPLATE, 0.10);
+        armorDamageReduction.put(Material.LEATHER_LEGGINGS, 0.05);
+        armorDamageReduction.put(Material.LEATHER_BOOTS, 0.05);
+
+        armorDamageReduction.put(Material.CHAINMAIL_HELMET, 0.10);
+        armorDamageReduction.put(Material.CHAINMAIL_CHESTPLATE, 0.20);
+        armorDamageReduction.put(Material.CHAINMAIL_LEGGINGS, 0.10);
+        armorDamageReduction.put(Material.CHAINMAIL_BOOTS, 0.10);
+
+        armorDamageReduction.put(Material.IRON_HELMET, 0.15);
+        armorDamageReduction.put(Material.IRON_CHESTPLATE, 0.30);
+        armorDamageReduction.put(Material.IRON_LEGGINGS, 0.15);
+        armorDamageReduction.put(Material.IRON_BOOTS, 0.15);
+
+        armorDamageReduction.put(Material.GOLDEN_HELMET, 0.10);
+        armorDamageReduction.put(Material.GOLDEN_CHESTPLATE, 0.20);
+        armorDamageReduction.put(Material.GOLDEN_LEGGINGS, 0.10);
+        armorDamageReduction.put(Material.GOLDEN_BOOTS, 0.10);
+
+        armorDamageReduction.put(Material.DIAMOND_HELMET, 0.20);
+        armorDamageReduction.put(Material.DIAMOND_CHESTPLATE, 0.40);
+        armorDamageReduction.put(Material.DIAMOND_LEGGINGS, 0.20);
+        armorDamageReduction.put(Material.DIAMOND_BOOTS, 0.20);
+
+        armorDamageReduction.put(Material.NETHERITE_HELMET, 0.25);
+        armorDamageReduction.put(Material.NETHERITE_CHESTPLATE, 0.50);
+        armorDamageReduction.put(Material.NETHERITE_LEGGINGS, 0.25);
+        armorDamageReduction.put(Material.NETHERITE_BOOTS, 0.25);
+    }
+
 
     @EventHandler
     public void onEntityBulletHit(EntityDamageByEntityEvent e) {
-        if (!(e.getDamager() instanceof Projectile)) return;
+        if (!(e.getDamager() instanceof Projectile bullet)) return;
 
-        Projectile bullet = (Projectile) e.getDamager();
         Entity shot = e.getEntity();
+        if (shot instanceof Player player) {
+            AtomicReference<Double> totalDamageReduction = new AtomicReference<>((double) 0);
+            Arrays.stream(player.getInventory().getArmorContents()).forEach(armor -> {
+                val meta = armor.getItemMeta();
+                if (meta != null) {
+                    Material armorMaterial = armor.getType();
+                    if (armorDamageReduction.containsKey(armorMaterial)) {
+                        totalDamageReduction.updateAndGet(v -> v + armorDamageReduction.get(armorMaterial));
+                    }
+                }
+            });
+
+            double newDamage = e.getDamage() * (1 - totalDamageReduction.get());
+            e.setDamage(newDamage);
+        }
+
         if (bullet.hasMetadata("isGunBullet")) {
-            if (bullet.getShooter() instanceof Player) {
-                Player shooter = (Player) bullet.getShooter();
+            if (bullet.getShooter() instanceof Player shooter) {
                 if (!Slimefun.getProtectionManager().hasPermission(shooter, shot.getLocation(), Interaction.ATTACK_PLAYER)) {
                     return;
                 }

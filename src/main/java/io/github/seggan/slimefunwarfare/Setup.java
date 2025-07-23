@@ -184,37 +184,37 @@ public final class Setup {
             Items.SLIMESTEEL, Items.SCOPE, null,
             Items.BARREL, Items.REVOLVER, Items.SLIMESTEEL,
             Items.SLIMESTEEL, Items.SLIMESTEEL, SlimefunItems.PLASTIC_SHEET
-        }, 30, 5, 6, 0.15).register(addon);
+        }, 30, 0, 6, 0.15).register(addon);
 
         new Gun(Items.MINIGUN, new ItemStack[]{
             Items.REINFORCED_SLIMESTEEL, Items.SCOPE, Items.REINFORCED_SLIMESTEEL,
             Items.ADVANCED_BARREL, Items.MACHINE_GUN, Items.REINFORCED_SLIMESTEEL,
             Items.REINFORCED_SLIMESTEEL, SlimefunItems.PLASTIC_SHEET, SlimefunItems.PLASTIC_SHEET
-        }, 40, 5, 8, 0).register(addon);
+        }, 40, 0, 8, 0).register(addon);
 
         new Gun(Items.RIFLE, new ItemStack[]{
             null, Items.SCOPE, null,
             Items.BARREL, Items.GUN_CASE, Items.SLIMESTEEL,
             null, Items.SLIMESTEEL, SlimefunItems.PLASTIC_SHEET
-        }, 40, 5, 8, 0.75).register(addon);
+        }, 40, 0, 8, 0.75).register(addon);
 
         new Gun(Items.SHOTGUN, new ItemStack[]{
             Items.SLIMESTEEL, Items.SLIMESTEEL, null,
             Items.BARREL, Items.BARREL, Items.GUN_CASE,
             Items.SLIMESTEEL, Items.SLIMESTEEL, SlimefunItems.PLASTIC_SHEET
-        }, 25, 5, 13, 1.25).register(addon);
+        }, 25, 0, 13, 1.25).register(addon);
 
         new Gun(Items.ASSAULT_RIFLE, new ItemStack[]{
             Items.SLIMESTEEL, Items.SCOPE, new ItemStack(Material.OAK_PLANKS),
             Items.BARREL, Items.RIFLE, Items.REINFORCED_SLIMESTEEL,
             Items.SLIMESTEEL, Items.SLIMESTEEL, SlimefunItems.PLASTIC_SHEET
-        }, 50, 3, 13, 0.3).register(addon);
+        }, 50, 0, 13, 0.3).register(addon);
 
         new Gun(Items.SNIPER, new ItemStack[]{
             null, Items.REINFORCED_SLIMESTEEL, Items.REINFORCED_SLIMESTEEL,
             Items.ADVANCED_BARREL, Items.ADVANCED_BARREL, Items.ASSAULT_RIFLE,
             new ItemStack(Material.STICK), Items.REINFORCED_SLIMESTEEL, SlimefunItems.PLASTIC_SHEET
-        }, 130, 50, 22, 8).register(addon);
+        }, 130, 0, 22, 8).register(addon);
 
         new EnergyRifle().register(addon);
     }
